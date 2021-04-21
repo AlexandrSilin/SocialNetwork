@@ -12,22 +12,3 @@ ul li {
     width: 1200px;
     margin: 0 auto;
 }
-
-.nav {
-    grid-area: nav;
-    background-color: rgb(100, 237, 191);
-}
-
-.header {
-    grid-area: header;
-    background-color: rgb(99, 199, 202);
-}
-
-.header img {
-    width: 100px;
-}
-
-.content {
-    grid-area: content;
-    background-color: rgb(115, 146, 248);
-}
