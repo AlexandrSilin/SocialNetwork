@@ -10,8 +10,8 @@ const Profile = () => {
             <img src='https://s1.1zoom.ru/big0/596/Evening_Forests_Mountains_Firewatch_Campo_Santo_549147_1280x720.jpg'></img>
         </div>
         <div>ava + desc</div>
-        <NewPost />
-        <MyPost />
+        <NewPost/>
+        <MyPost/>
     </div>
 }
 
