@@ -15,12 +15,12 @@ ul li {
 
 .nav {
     grid-area: nav;
-    background-color: cornflowerblue;
+    background-color: rgb(100, 237, 191);
 }
 
 .header {
     grid-area: header;
-    background-color: cadetblue;
+    background-color: rgb(99, 199, 202);
 }
 
 .header img {
@@ -29,5 +29,5 @@ ul li {
 
 .content {
     grid-area: content;
-    background-color: crimson;
+    background-color: rgb(115, 146, 248);
 }
