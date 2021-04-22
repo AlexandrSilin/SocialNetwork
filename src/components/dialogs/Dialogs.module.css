@@ -1,24 +1,51 @@
-.dialogs{
+.dialogs {
+    font-family: fantasy;
+    font-style: italic;
+    font-variant: small-caps;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 100%;
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-decoration: none;
+    text-transform: none;
+    text-align: justify;
+    text-indent: 0ex;
+    color: #606263;
+    margin-bottom: 5px;
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
 
-.dialogsItems{
+.dialogsItems {
     padding: 10px;
 }
 
-dialogsItems.dialog{
+dialogsItems.dialog {
 
 }
 
-.dialog.active{
+.dialogs.active {
     color: #377c99;
 }
 
-.messages{
+.messages {
+    font-family: fantasy;
+    font-style: italic;
+    font-variant: small-caps;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 100%;
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-decoration: none;
+    text-transform: none;
+    text-align: justify;
+    text-indent: 0ex;
+    color: #606263;
     padding: 10px;
 }
 
-messages.message{
+messages.message {
 
 }

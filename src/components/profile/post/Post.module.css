@@ -1,16 +1,17 @@
 .post {
-	font-family: serif;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	font-size: medium;
-	line-height: 100%;
-	word-spacing: normal;
-	letter-spacing: normal;
-	text-decoration: none;
-	text-transform: none;
-	text-align: justify;
-	text-indent: 0ex;
+    font-family: serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 100%;
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-decoration: none;
+    text-transform: none;
+    text-align: justify;
+    text-indent: 0ex;
+    margin-bottom: 10px;
 }
 
 .post img {

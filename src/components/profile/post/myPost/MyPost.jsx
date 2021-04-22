@@ -3,13 +3,11 @@ import classes from './MyPost.module.css'
 
 import Post from '../Post'
 
-const MyPost = () => {
+const MyPost = (props) => {
+    let postElements = props.posts.map(post => <Post message={post.message} likes={post.likes}/>)
     return <div className={classes.myPost}>
-        My posts
-        <Post message="Post 1" likes={1}/>
-        <div>
-            <Post message="Post 2" likes={3}/>
-        </div>
+        <h2>My posts</h2>
+        {postElements}
     </div>
 }
 

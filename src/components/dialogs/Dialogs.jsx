@@ -1,30 +1,20 @@
 import React from 'react'
 import classes from './Dialogs.module.css'
+import Message from "./message/Message";
+import Dialog from "./dialog/Dialog";
 
 const Dialogs = (props) => {
+    let messagesElement = props.dialogs.messagesData.map(messages => <Message message={messages.message}/>)
+    let dialogElement = props.dialogs.dialogsData.map(dialogs => <Dialog id={dialogs.id} name={dialogs.name}/>)
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <div className={classes.dialog + ' ' + classes.active}>
-                    Ilya
-                </div>
-                <div className={classes.dialog}>
-                    Dasha
-                </div>
-                <div className={classes.dialog}>
-                    Marina
-                </div>
+                {dialogElement}
             </div>
             <div className={classes.messages}>
-                <div className={classes.message}>
-                    Hi
-                </div>
-                <div className={classes.message}>
-                    How are you?
-                </div>
+                {messagesElement}
             </div>
         </div>
-
     )
 }
 

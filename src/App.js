@@ -10,15 +10,15 @@ import News from './components/news/News'
 import Settings from './components/settings/Settings'
 import Music from './components/music/Music'
 
-const App = () => {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Nav/>
+                <Nav siteBar={props.AppState.siteBar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' component={Profile}/>
-                    <Route path='/messages' component={Dialogs}/>
+                    <Route path='/profile' render={() => <Profile profile={props.AppState.profile}/>}/>
+                    <Route path='/messages' render={() => <Dialogs dialogs={props.AppState.dialogs}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/music' component={Music}/>

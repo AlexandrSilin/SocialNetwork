@@ -2,7 +2,7 @@ ul li {
     list-style-type: georgian;
 }
 
-.app-wrapper{
+.app-wrapper {
     display: grid;
     grid-template-areas: 
     "header header"
@@ -13,7 +13,7 @@ ul li {
     margin: 0 auto;
 }
 
-.app-wrapper-content{
+.app-wrapper-content {
     grid-area: content;
     background-color: #f5ebe1;
 }
