@@ -31,4 +31,9 @@ let state = {
     }
 }
 
+export let addPost = (postMessage) => {
+    if (postMessage.length > 0)
+        state.profile.posts.push({message: postMessage, likes: 0})
+}
+
 export default state

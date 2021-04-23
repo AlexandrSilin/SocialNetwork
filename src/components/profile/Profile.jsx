@@ -10,7 +10,7 @@ const Profile = (props) => {
         <ProfileInfo
             pic='https://s1.1zoom.ru/big0/596/Evening_Forests_Mountains_Firewatch_Campo_Santo_549147_1280x720.jpg'
             desc='Info'/>
-        <NewPost/>
+        <NewPost addPost={props.addPost}/>
         <MyPost posts={props.profile.posts}/>
     </div>
 }
