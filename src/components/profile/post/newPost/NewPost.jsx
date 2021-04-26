@@ -5,9 +5,12 @@ const NewPost = (props) => {
     let newPostElement = React.createRef();
 
     return <div className={classes.newPost}>
-        <textarea ref={newPostElement}/>
+        <textarea ref={newPostElement} value={props.newPostText}
+                  onChange={() => props.dispatch({type: 'CHANGE-TEXT', value: newPostElement.current.value})}/>
         <div>
-            <button className={classes.button} onClick={() => props.addPost(newPostElement.current.value)}>Add post</button>
+            <button className={classes.button}
+                    onClick={() => props.dispatch({type: 'ADD-POST', value: ''})}>Add post
+            </button>
         </div>
     </div>
 }
