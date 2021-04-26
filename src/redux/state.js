@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
+const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
+
 let store = {
     _callSubscriber() {
         console.log("state changed")
@@ -22,9 +27,10 @@ let store = {
             ],
 
             messagesData: [
-                {message: "Hello"},
-                {message: "how are you?"}
-            ]
+                {id: 1, message: "Hello"},
+                {id: 2, message: "how are you?"}
+            ],
+            newMessageText: ''
         },
 
         siteBar: {
@@ -44,17 +50,69 @@ let store = {
         this._callSubscriber = observer;
     },
 
+    _addPost() {
+        if (this._state.profile.newPostText.length > 0)
+            this._state.profile.posts.push({message: this._state.profile.newPostText, likes: 0});
+        this._state.profile.newPostText = '';
+        this._callSubscriber(this._state);
+    },
+
+    _updateTextField(message) {
+        this._state.profile.newPostText = message;
+        this._callSubscriber(this._state);
+    },
+
+    _updateMessageField(message) {
+        this._state.dialogs.newMessageText = message;
+        this._callSubscriber(this._state);
+    },
+
+    _sendMessage() {
+        if (this._state.dialogs.newMessageText.length > 0)
+            this._state.dialogs.messagesData.push({
+                id: this._state.dialogs.messagesData.length,
+                message: this._state.dialogs.newMessageText
+            });
+        this._state.dialogs.newMessageText = '';
+        this._callSubscriber(this._state);
+    },
+
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            if (this._state.profile.newPostText.length > 0)
-                this._state.profile.posts.push({message: this._state.profile.newPostText, likes: 0})
-            this._state.profile.newPostText = ''
-            this._callSubscriber(this._state);
-        } else if (action.type === 'CHANGE-TEXT') {
-            this._state.profile.newPostText = action.value;
-            this._callSubscriber(this._state)
+        switch (action.type) {
+            case ADD_POST: {
+                this._addPost();
+                break;
+            }
+            case CHANGE_POST_TEXT: {
+                this._updateTextField(action.value);
+                break;
+            }
+            case CHANGE_MESSAGE_TEXT: {
+                this._updateMessageField(action.value);
+                break;
+            }
+            case SEND_MESSAGE: {
+                this._sendMessage();
+                break;
+            }
         }
     }
+}
+
+export const addPostActionCreator = () => {
+    return {type: ADD_POST}
+}
+
+export const changeTextActionCreator = (message) => {
+    return {type: CHANGE_POST_TEXT, value: message}
+}
+
+export const sendMessageActionCreator = () => {
+    return {type: SEND_MESSAGE}
+}
+
+export const changeMessageBodyActionCreator = (message) => {
+    return {type: CHANGE_MESSAGE_TEXT, value: message}
 }
 
 window.store = store;
