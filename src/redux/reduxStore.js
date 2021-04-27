@@ -3,6 +3,10 @@ import dialogsReducer from "./dialogsReducer";
 import sideBarReducer from "./sideBarReducer";
 import profileReducer from "./profileReducer";
 
-let store = createStore(combineReducers({profileReducer, dialogsReducer, sideBarReducer}));
+let store = createStore(combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sideBar: sideBarReducer
+}));
 
 export default store;
