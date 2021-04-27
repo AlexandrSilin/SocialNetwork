@@ -2,11 +2,6 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import sideBarReducer from "./sideBarReducer";
 
-const ADD_POST = 'ADD-POST';
-const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
-const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE';
-
 let store = {
     _callSubscriber() {
         console.log("state changed")
@@ -60,22 +55,6 @@ let store = {
         this._state.siteBar = sideBarReducer(this._state.siteBar, action);
         this._callSubscriber(this._state);
     }
-}
-
-export const addPostActionCreator = () => {
-    return {type: ADD_POST}
-}
-
-export const changeTextActionCreator = (message) => {
-    return {type: CHANGE_POST_TEXT, value: message}
-}
-
-export const sendMessageActionCreator = () => {
-    return {type: SEND_MESSAGE}
-}
-
-export const changeMessageBodyActionCreator = (message) => {
-    return {type: CHANGE_MESSAGE_TEXT, value: message}
 }
 
 window.store = store;
