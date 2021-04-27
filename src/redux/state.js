@@ -1,3 +1,7 @@
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import sideBarReducer from "./sideBarReducer";
+
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 const CHANGE_MESSAGE_TEXT = 'CHANGE-MESSAGE-TEXT';
@@ -50,52 +54,11 @@ let store = {
         this._callSubscriber = observer;
     },
 
-    _addPost() {
-        if (this._state.profile.newPostText.length > 0)
-            this._state.profile.posts.push({message: this._state.profile.newPostText, likes: 0});
-        this._state.profile.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-
-    _updateTextField(message) {
-        this._state.profile.newPostText = message;
-        this._callSubscriber(this._state);
-    },
-
-    _updateMessageField(message) {
-        this._state.dialogs.newMessageText = message;
-        this._callSubscriber(this._state);
-    },
-
-    _sendMessage() {
-        if (this._state.dialogs.newMessageText.length > 0)
-            this._state.dialogs.messagesData.push({
-                id: this._state.dialogs.messagesData.length,
-                message: this._state.dialogs.newMessageText
-            });
-        this._state.dialogs.newMessageText = '';
-        this._callSubscriber(this._state);
-    },
-
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST: {
-                this._addPost();
-                break;
-            }
-            case CHANGE_POST_TEXT: {
-                this._updateTextField(action.value);
-                break;
-            }
-            case CHANGE_MESSAGE_TEXT: {
-                this._updateMessageField(action.value);
-                break;
-            }
-            case SEND_MESSAGE: {
-                this._sendMessage();
-                break;
-            }
-        }
+        this._state.profile = profileReducer(this._state.profile, action);
+        this._state.dialogs = dialogsReducer(this._state.dialogs, action);
+        this._state.siteBar = sideBarReducer(this._state.siteBar, action);
+        this._callSubscriber(this._state);
     }
 }
 
