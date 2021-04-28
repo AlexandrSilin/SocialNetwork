@@ -7,6 +7,11 @@ const Nav = (props) => {
     let friends = props.friends.map(friend => <Friend name={friend.name} ava={friend.ava}/>)
     return <nav className={classes.nav}>
         <div>
+            <NavLink className={classes.item} activeClassName={classes.active} to={'/find_users'}>
+                <h4>Find Users</h4>
+            </NavLink>
+        </div>
+        <div>
             <NavLink className={classes.item} activeClassName={classes.active} to='/profile'>Profile</NavLink>
         </div>
         <div>
@@ -21,6 +26,7 @@ const Nav = (props) => {
         <div>
             <NavLink className={classes.item} activeClassName={classes.active} to='/settings'>Settings</NavLink>
         </div>
+
         <div className={classes.item}>
             <h3> Friends </h3>
             <div className={classes.friend}>

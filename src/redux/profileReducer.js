@@ -3,10 +3,10 @@ const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 
 const initialState = {
     posts: [
-        {message: "Post 1", likes: 11},
-        {message: "Post 2", likes: 12},
-        {message: "Post 3", likes: 25},
-        {message: "Post 4", likes: 5}
+        {id:1, message: "Post 1", likes: 11},
+        {id:2, message: "Post 2", likes: 12},
+        {id:3, message: "Post 3", likes: 25},
+        {id:4, message: "Post 4", likes: 5}
     ],
     newPostText: ''
 }
@@ -17,6 +17,7 @@ const profileReducer = (state = initialState, action) => {
             return state.newPostText.length > 0 ? {
                 ...state,
                 posts: [...state.posts, {
+                    id:state.posts.length + 1,
                     message: state.newPostText,
                     likes: 0
                 }],

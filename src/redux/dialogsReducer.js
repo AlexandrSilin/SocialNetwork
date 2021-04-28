@@ -20,7 +20,7 @@ export const dialogsReducer = (state = initialState, action) => {
             return state.newMessageText.length > 0 ? {
                 ...state,
                 messagesData: [...state.messagesData, {
-                    id: state.messagesData.length,
+                    id: state.messagesData.length + 1,
                     message: state.newMessageText,
                 }],
                 newMessageText: ''
