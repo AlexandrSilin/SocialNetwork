@@ -7,7 +7,7 @@ const Nav = (props) => {
     let friends = props.friends.map(friend => <Friend name={friend.name} ava={friend.ava}/>)
     return <nav className={classes.nav}>
         <div>
-            <NavLink className={classes.item} activeClassName={classes.active} to={'/find_users'}>
+            <NavLink className={classes.item} activeClassName={classes.active} to='/find_users'>
                 <h4>Find Users</h4>
             </NavLink>
         </div>
