@@ -4,20 +4,20 @@ import {
     setCountUsersActionCreator,
     setCurrentPageActionCreator,
     setIsFetchingActionCreator,
+    setIsFollowingActionCreator,
     setUsersActionCreator,
     unfollowActionCreator
 } from "../../redux/usersReducer";
 import {connect} from "react-redux";
 import Users from "./Users";
-import * as axios from 'axios';
 import {Loader} from "../loader/Loader";
-
+import {getUsers} from "../../api/api";
 
 class UsersContainer extends React.Component {
 
     getUsers = (page) => {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+        getUsers(page, this.props.pageSize)
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setCountUsers(response.data.totalCount);
@@ -42,7 +42,9 @@ class UsersContainer extends React.Component {
                 <Users currentPage={this.props.currentPage} countUsers={this.props.countUsers}
                        pageSize={this.props.pageSize} users={this.props.users} unfollow={this.props.unfollow}
                        follow={this.props.follow} setCurrentPage={this.props.setCurrentPage}
-                       getPages={() => this.getPages()} getUsers={(page) => this.getUsers(page)}/>}
+                       getPages={() => this.getPages()} getUsers={(page) => this.getUsers(page)}
+                       toggleIsFollowing={this.props.toggleIsFollowing}
+                       isFollowing={this.props.isFollowing}/>}
         </>
     }
 }
@@ -54,7 +56,8 @@ const mapDispatchToProps = (dispatch) => {
         setUsers: (users) => dispatch(setUsersActionCreator(users)),
         setCurrentPage: (currentPage) => dispatch(setCurrentPageActionCreator(currentPage)),
         setCountUsers: (count) => dispatch(setCountUsersActionCreator(count)),
-        toggleIsFetching: (isFetching) => dispatch(setIsFetchingActionCreator(isFetching))
+        toggleIsFetching: (isFetching) => dispatch(setIsFetchingActionCreator(isFetching)),
+        toggleIsFollowing: (isFollowing) => dispatch(setIsFollowingActionCreator(isFollowing))
     }
 }
 
@@ -64,7 +67,8 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         countUsers: state.usersPage.countUsers,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        isFollowing: state.usersPage.isFollowing
     }
 }
 

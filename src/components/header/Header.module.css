@@ -6,3 +6,28 @@
 .header img {
     width: 100px;
 }
+
+.loginBlock {
+    float: right;
+}
+
+.item {
+    padding-right: 10px;
+    font-family: fantasy;
+    font-style: italic;
+    font-variant: small-caps;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 100%;
+    word-spacing: normal;
+    letter-spacing: normal;
+    text-decoration: none;
+    text-transform: none;
+    text-align: justify;
+    text-indent: 0ex;
+    color: #f5ebe1;
+}
+
+.item.active {
+    color: #377c99;
+}

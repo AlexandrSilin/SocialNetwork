@@ -1,6 +1,8 @@
 import React from "react";
 import classes from "./Users.module.css";
 import ava from "../../assets/ava.jpg";
+import {NavLink} from "react-router-dom";
+import {follow, unfollow} from "../../api/api";
 
 let Users = (props) => {
     return <div>
@@ -8,12 +10,31 @@ let Users = (props) => {
             props.users.map(user => <div key={user.id}>
                 <span>
                     <div>
-                        <img className={classes.ava}
-                             src={user.photos.small === null ? ava : user.photos.small}/>
+                        <NavLink to={'/profile/' + user.id}>
+                            <img className={classes.ava}
+                                 src={user.photos.small === null ? ava : user.photos.small}/>
+                        </NavLink>
                     </div>
                     <div>
-                        <button onClick={user.followed ? () =>
-                            props.unfollow(user.id) : () => props.follow(user.id)}>
+                        <button
+                            disabled={props.isFollowing.some(id => id === user.id)}
+                            onClick={user.followed ? () => {
+                                props.toggleIsFollowing(true, user.id);
+                                unfollow(user.id)
+                                    .then(response => {
+                                        props.toggleIsFollowing(user.id);
+                                        if (response.data.resultCode === 0)
+                                            props.unfollow(false, user.id)
+                                    })
+                            } : () => {
+                                props.toggleIsFollowing(user.id);
+                                follow(user.id)
+                                    .then(response => {
+                                        props.toggleIsFollowing(true, user.id);
+                                        if (response.data.resultCode === 0)
+                                            props.follow(false, user.id)
+                                    })
+                            }}>
                             {user.followed ? "Unfollow" : "Follow"}
                         </button>
                     </div>

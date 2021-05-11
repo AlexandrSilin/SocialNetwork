@@ -13,3 +13,10 @@
     text-indent: 0ex;
     padding: 10px;
 }
+
+.myPost img {
+    width: 50px;
+    height: 50px;
+    border-radius: 35px;
+    padding: 10px;
+}
