@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api"
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -13,6 +15,42 @@ const initialState = {
     currentPage: 1,
     isFetching: true,
     isFollowing: []
+}
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(setIsFetchingActionCreator(true));
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(response => {
+                dispatch(setUsersActionCreator(response.data.items));
+                dispatch(setCountUsersActionCreator(response.data.totalCount));
+                dispatch(setIsFetchingActionCreator(false));
+            })
+    };
+}
+
+export const unFollowThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(setIsFollowingActionCreator(true, userId));
+        usersAPI.unfollow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0)
+                    unfollowActionCreator(userId)
+                dispatch(setIsFollowingActionCreator(false, userId))
+            })
+    }
+}
+
+export const followThunkCreator = (userId) => {
+    return (dispatch) => {
+        dispatch(setIsFollowingActionCreator(true, userId));
+        usersAPI.follow(userId)
+            .then(response => {
+                if (response.data.resultCode === 0)
+                    followActionCreator(userId)
+                dispatch(setIsFollowingActionCreator(false, userId))
+            })
+    }
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -38,8 +76,8 @@ const usersReducer = (state = initialState, action) => {
         case TOGGLE_IS_FOLLOWING:
             return {
                 ...state,
-                isFollowing: action.isFollowing ?
-                    [...state.isFollowing, action.userId] : state.isFollowing.filter(id => id != action.userId)
+                isFollowing: action.isFetching ?
+                    [...state.isFollowing, action.id] : [...state.isFollowing.filter(id => id !== action.id)]
             }
         default:
             return state;
@@ -52,6 +90,6 @@ export const setUsersActionCreator = (users) => ({type: SET_USERS, users});
 export const setCurrentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setCountUsersActionCreator = (count) => ({type: SET_COUNT_USERS, count});
 export const setIsFetchingActionCreator = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
-export const setIsFollowingActionCreator = (isFollowing, userId) => ({type: TOGGLE_IS_FOLLOWING, isFollowing})
+export const setIsFollowingActionCreator = (isFetching, id) => ({type: TOGGLE_IS_FOLLOWING, isFetching, id})
 
 export default usersReducer;

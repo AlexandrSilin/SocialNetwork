@@ -2,9 +2,9 @@ import React from "react";
 import classes from "./Users.module.css";
 import ava from "../../assets/ava.jpg";
 import {NavLink} from "react-router-dom";
-import {follow, unfollow} from "../../api/api";
 
 let Users = (props) => {
+    debugger
     return <div>
         {
             props.users.map(user => <div key={user.id}>
@@ -16,27 +16,9 @@ let Users = (props) => {
                         </NavLink>
                     </div>
                     <div>
-                        <button
-                            disabled={props.isFollowing.some(id => id === user.id)}
-                            onClick={user.followed ? () => {
-                                props.toggleIsFollowing(true, user.id);
-                                unfollow(user.id)
-                                    .then(response => {
-                                        props.toggleIsFollowing(user.id);
-                                        if (response.data.resultCode === 0)
-                                            props.unfollow(false, user.id)
-                                    })
-                            } : () => {
-                                props.toggleIsFollowing(user.id);
-                                follow(user.id)
-                                    .then(response => {
-                                        props.toggleIsFollowing(true, user.id);
-                                        if (response.data.resultCode === 0)
-                                            props.follow(false, user.id)
-                                    })
-                            }}>
-                            {user.followed ? "Unfollow" : "Follow"}
-                        </button>
+                        <button disabled={props.isFollowing.some(id => id === user.id)}
+                                onClick={() => user.followed ? props.unFollowUser(user.id) :
+                                    props.followUser(user.id)}>{user.followed ? "Follow" : "Unfollow"}</button>
                     </div>
                 </span>
                 <span>
@@ -64,7 +46,7 @@ let Users = (props) => {
                 return (
                     <span onClick={() => {
                         props.setCurrentPage(page);
-                        props.getUsers(page);
+                        props.getUsers(page, props.pageSize);
                     }}
                           className={props.currentPage === page ? classes.currentPage : classes.item}>{page}
                             </span>)
