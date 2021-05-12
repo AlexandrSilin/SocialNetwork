@@ -34,8 +34,9 @@ export const unFollowThunkCreator = (userId) => {
         dispatch(setIsFollowingActionCreator(true, userId));
         usersAPI.unfollow(userId)
             .then(response => {
-                if (response.data.resultCode === 0)
-                    unfollowActionCreator(userId)
+                if (response.data.resultCode === 0) {
+                    unfollowActionCreator(userId);
+                }
                 dispatch(setIsFollowingActionCreator(false, userId))
             })
     }
@@ -46,8 +47,9 @@ export const followThunkCreator = (userId) => {
         dispatch(setIsFollowingActionCreator(true, userId));
         usersAPI.follow(userId)
             .then(response => {
-                if (response.data.resultCode === 0)
-                    followActionCreator(userId)
+                if (response.data.resultCode === 0) {
+                    followActionCreator(userId);
+                }
                 dispatch(setIsFollowingActionCreator(false, userId))
             })
     }

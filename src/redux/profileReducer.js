@@ -1,3 +1,5 @@
+import {postsAPI} from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const CHANGE_POST_TEXT = 'CHANGE-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -11,6 +13,15 @@ const initialState = {
     ],
     newPostText: '',
     profile: null
+}
+
+export const getPostThunkCreator = (userId) => {
+    return (dispatch) => {
+        postsAPI.getPosts(userId)
+            .then(response => {
+                dispatch(setUserProfileActionCreator(response.data));
+            });
+    }
 }
 
 const profileReducer = (state = initialState, action) => {

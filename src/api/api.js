@@ -26,6 +26,8 @@ export const authAPI = {
     }
 }
 
-export const getPosts = (userId) => {
-    return instance.get(`profile/${userId ? userId : 2}`)
+export const postsAPI = {
+    getPosts(userId) {
+        return instance.get(`profile/${userId ? userId : 2}`)
+    }
 }

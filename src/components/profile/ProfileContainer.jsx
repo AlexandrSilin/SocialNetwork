@@ -1,16 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {setUserProfileActionCreator} from "../../redux/profileReducer";
+import {getPostThunkCreator} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom"
-import {getPosts} from "../../api/api";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        getPosts(this.props.match.params.userId)
-            .then(response => {
-                this.props.setUserProfile(response.data);
-            });
+        this.props.getPost(this.props.match.params.userId)
     }
 
     render() {
@@ -26,7 +22,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        setUserProfile: (profile) => dispatch(setUserProfileActionCreator(profile))
+        getPost: (userId) => dispatch(getPostThunkCreator(userId))
     }
 };
 
