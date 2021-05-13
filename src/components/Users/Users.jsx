@@ -4,7 +4,6 @@ import ava from "../../assets/ava.jpg";
 import {NavLink} from "react-router-dom";
 
 let Users = (props) => {
-    debugger
     return <div>
         {
             props.users.map(user => <div key={user.id}>
