@@ -1,4 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
+import {reducer} from "redux-form"
 import dialogsReducer from "./dialogsReducer";
 import sideBarReducer from "./sideBarReducer";
 import profileReducer from "./profileReducer";
@@ -11,7 +12,8 @@ let store = createStore(combineReducers({
     dialogsPage: dialogsReducer,
     sideBar: sideBarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: reducer
 }), applyMiddleware(thunkMiddleware));
 
 export default store;

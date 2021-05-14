@@ -13,6 +13,7 @@ import {
 import {connect} from "react-redux";
 import Users from "./Users";
 import {Loader} from "../loader/Loader";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
@@ -68,4 +69,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps)
+)(UsersContainer);
