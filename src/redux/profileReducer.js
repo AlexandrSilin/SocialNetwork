@@ -44,14 +44,14 @@ export const updateStatusThunkCreator = (status) => {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            return action.value.length > 0 ? {
+            return {
                 ...state,
                 posts: [...state.posts, {
                     id: state.posts.length + 1,
                     message: action.value,
                     likes: 0
                 }],
-            } : state
+            }
         case SET_USER_PROFILE:
             return ({
                 ...state,

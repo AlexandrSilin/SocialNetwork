@@ -15,13 +15,13 @@ const initialState = {
 export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SEND_MESSAGE:
-            return action.value.length > 0 ? {
+            return {
                 ...state,
                 messagesData: [...state.messagesData, {
                     id: state.messagesData.length + 1,
                     message: action.value,
                 }]
-            } : state;
+            }
         default:
             return state;
     }

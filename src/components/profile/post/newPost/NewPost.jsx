@@ -2,6 +2,11 @@ import React from 'react'
 import classes from './NewPost.module.css'
 import {Field, reduxForm} from "redux-form";
 import {Redirect} from "react-router-dom";
+import {maxLengthCreator, minLengthCreator, requiredField} from "../../../../utils/validators/validators";
+import {Textarea} from "../../../formsControls/formsControls";
+
+const maxLength = maxLengthCreator(50);
+const minLength = minLengthCreator(10);
 
 const NewPost = (props) => {
     if (!props.isAuth)
@@ -16,7 +21,8 @@ const AddPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component="textarea" name="postText" placeholder="New post"/>
+                <Field component={Textarea} name="postText" placeholder="New post"
+                       validate={[requiredField, maxLength, minLength]}/>
             </div>
             <div>
                 <button className={classes.button}>Add post</button>
