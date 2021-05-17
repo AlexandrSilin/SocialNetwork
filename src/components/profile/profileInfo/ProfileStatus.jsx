@@ -18,7 +18,8 @@ class ProfileStatus extends React.Component {
                     {this.state.editMode ?
                         <input autoFocus={true} onBlur={() => {
                             this.props.updateStatus(this.state.status);
-                            this.setState({editMode: !this.state.editMode})}}
+                            this.setState({editMode: !this.state.editMode})
+                        }}
                                onChange={(e) => this.setState({status: e.currentTarget.value})}
                                value={this.state.status}/> :
                         <span

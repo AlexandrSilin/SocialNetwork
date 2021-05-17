@@ -20,11 +20,11 @@ const App = () => {
                 <div className='app-wrapper-content'>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/messages' render={() => <DialogsContainer/>}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/settings' component={Settings}/>
-                    <Route path='/music' component={Music}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/settings' render={() => <Settings/>}/>
+                    <Route path='/music' render={() => <Music/>}/>
                     <Route path='/find_users' render={() => <UsersContainer/>}/>
-                    <Route path='/login' component={Login}/>
+                    <Route path='/login' render={() => <Login/>}/>
                 </div>
             </div>
         </BrowserRouter>
