@@ -9,9 +9,7 @@ const maxLength = maxLengthCreator(50);
 const minLength = minLengthCreator(10);
 
 const NewPost = (props) => {
-    if (!props.isAuth)
-        return <Redirect to={'login'}/>
-    return (
+    return !props.isAuth ? <Redirect to={'login'}/> :(
         <div className={classes.newPost}>
             <AddPostFormRedux onSubmit={(values) => props.addPost(values.postText)}/>
         </div>)

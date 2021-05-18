@@ -4,10 +4,12 @@ import Profile from "./Profile";
 import {getPostThunkCreator, setStatusThunkCreator, updateStatusThunkCreator} from "../../redux/profileReducer";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
+import {Redirect} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.match.params.userId ? this.props.match.params.userId : 17061;
+        let userId = this.props.match.params.userId ? this.props.match.params.userId :
+            this.props.isAuth ? this.props.userId : <Redirect to='login'/>;
         this.props.getPost(userId)
         this.props.getStatus(userId)
     }
@@ -21,7 +23,9 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        userId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 };
 

@@ -11,9 +11,7 @@ const maxLength = maxLengthCreator(100);
 const minLength = minLengthCreator(1);
 
 const Dialogs = (props) => {
-    if (!props.isAuth)
-        return <Redirect to={'login'}/>
-    return (
+    return !props.isAuth ? <Redirect to={'login'}/> : (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
                 {props.dialogsData.map(dialogs => <Dialog id={dialogs.id} name={dialogs.name}/>)}

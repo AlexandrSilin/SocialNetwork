@@ -6,9 +6,7 @@ import MyPostContainer from "./post/myPost/MyPostContainer";
 import {Loader} from "../loader/Loader";
 
 const Profile = (props) => {
-    if (!props.profile)
-        return <Loader/>
-    return <div className={classes.content}>
+    return !props.profile ? <Loader/> : <div className={classes.content}>
         <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         <NewPostContainer store={props.store}/>
         <MyPostContainer store={props.store}/>
