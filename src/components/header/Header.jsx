@@ -16,14 +16,4 @@ const Header = (props) => {
     </header>
 }
 
-const LogoutReduxForm = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <button>Logout</button>
-            </div>
-        </form>
-    )
-}
-
 export default Header;
