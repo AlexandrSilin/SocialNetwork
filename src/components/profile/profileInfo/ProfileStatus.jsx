@@ -23,7 +23,9 @@ class ProfileStatus extends React.Component {
                                onChange={(e) => this.setState({status: e.currentTarget.value})}
                                value={this.state.status}/> :
                         <span
-                            onDoubleClick={() => this.setState({editMode: !this.state.editMode})}>{this.props.status || "----"}</span>}
+                            onDoubleClick={() => this.setState({editMode: !this.state.editMode})}>
+                            {this.props.status || "----"}
+                        </span>}
                 </div>
             </div>
         )

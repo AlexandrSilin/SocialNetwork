@@ -29,7 +29,7 @@ export const authAPI = {
         return instance.post(`auth/login`, {email, password, rememberMe})
     },
 
-    logout(){
+    logout() {
         return instance.delete(`auth/login`)
     }
 }

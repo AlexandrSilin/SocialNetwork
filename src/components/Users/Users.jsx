@@ -17,7 +17,7 @@ let Users = (props) => {
                     <div>
                         <button disabled={props.isFollowing.some(id => id === user.id)}
                                 onClick={() => user.followed ? props.unFollowUser(user.id) :
-                                    props.followUser(user.id)}>{user.followed ? "Follow" : "Unfollow"}</button>
+                                    props.followUser(user.id)}>{user.followed ? "Unfollow" : "Follow"}</button>
                     </div>
                 </span>
                 <span>

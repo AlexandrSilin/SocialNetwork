@@ -14,6 +14,14 @@ import {connect} from "react-redux";
 import Users from "./Users";
 import {Loader} from "../loader/Loader";
 import {compose} from "redux";
+import {
+    getCountUsers,
+    getCurrentPage,
+    getPageSize,
+    getUsers,
+    isFetching,
+    isFollowing
+} from "../../redux/usersSelectors";
 
 class UsersContainer extends React.Component {
 
@@ -60,12 +68,12 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        countUsers: state.usersPage.countUsers,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        isFollowing: state.usersPage.isFollowing
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        countUsers: getCountUsers(state),
+        currentPage: getCurrentPage(state),
+        isFetching: isFetching(state),
+        isFollowing: isFollowing(state)
     }
 }
 

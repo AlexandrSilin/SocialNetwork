@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import './App.css';
 import News from './components/news/News'
 import Settings from './components/settings/Settings'
@@ -11,7 +11,6 @@ import ProfileContainer from "./components/profile/ProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
-import {compose} from "redux";
 import {initializeApp} from "./redux/appReducer";
 import {Loader} from "./components/loader/Loader";
 
@@ -37,7 +36,7 @@ class App extends React.Component {
                     </div>
                 </div>
             </BrowserRouter>
-        ) : <Loader />
+        ) : <Loader/>
     }
 }
 
